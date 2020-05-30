@@ -17,9 +17,9 @@ const AddForm = (props) => {
             alert("form submitted successfully")
             event.preventDefault();
             console.log(formState)
-            if (formState.id && formState.product && formState.number && formState.size) {
+            if (formState.id && formState.product && formState.number && formState.size)
                 props.addItem(formState)
-            } else { setformState(initialFormState) }
+            setformState(initialFormState)
         }
         return ( < div >
 
