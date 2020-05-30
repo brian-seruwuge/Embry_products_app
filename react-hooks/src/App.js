@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 //import logo from './logo.svg';
 import './App.css';
-import 'semantic-ui-css/semantic.min.css'
+// import 'semantic-ui-css/semantic.min.css'
 import { Table, Button, Grid } from 'semantic-ui-react'
 import AddForm from './components/addForm';
 import EditForm from './components/editForm'

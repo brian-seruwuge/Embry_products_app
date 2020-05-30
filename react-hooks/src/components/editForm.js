@@ -1,5 +1,5 @@
 import React, { Component, useState, useEffect } from 'react';
-import 'semantic-ui-css/semantic.min.css'
+// import 'semantic-ui-css/semantic.min.css'
 import { Button, Form } from 'semantic-ui-react'
 import App from '../App'
 
@@ -14,7 +14,7 @@ const EditForm = (props) => {
         }
 
         const handleSubmit = (event) => {
-            alert("form submitted successfully")
+            // alert("form submitted successfully")
             event.preventDefault();
             console.log(EditFormState)
             props.updateItem(EditFormState.id, EditFormState)
