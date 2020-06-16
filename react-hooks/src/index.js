@@ -5,12 +5,9 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import 'semantic-ui-less/semantic.less'
 
-ReactDOM.render( <
-    React.StrictMode >
-    <
-    App / >
-    <
-    /React.StrictMode>,
+ReactDOM.render( <React.StrictMode >
+    <App />
+    </React.StrictMode>,
     document.getElementById('root')
 );
 

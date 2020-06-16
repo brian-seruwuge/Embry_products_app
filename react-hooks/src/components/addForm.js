@@ -1,10 +1,9 @@
 import React, { Component, useState } from 'react';
-// import 'semantic-ui-css/semantic.min.css'
 import { Button, Form } from 'semantic-ui-react'
-import App from '../App'
+import axios from 'axios'
 
 const AddForm = (props) => {
-        const initialFormState = { id: "", product: "", number: "", size: "" }
+        const initialFormState = { products: "", number: "", size: "" }
         const [formState, setformState] = useState(initialFormState)
 
         const handleChange = (event) => {
@@ -14,12 +13,14 @@ const AddForm = (props) => {
         }
 
         const handleSubmit = (event) => {
-            // alert("form submitted successfully")
             event.preventDefault();
             console.log(formState)
-            if (formState.id && formState.product && formState.number && formState.size)
-                props.addItem(formState)
-            setformState(initialFormState)
+                // if (formState.id && formState.product && formState.number && formState.size)
+                // props.addItem(formState)
+                // setformState(initialFormState)
+            return axios.post('http://localhost:5002/embry', formState)
+                .then(response => { console.log(response) })
+                .catch(error => { console.log(error, error.response) })
         }
         return ( < div >
 
@@ -29,19 +30,10 @@ const AddForm = (props) => {
             <
             Form.Field width = { 12 } >
             <
-            label > ID < /label>  <
-            input placeholder = 'ID'
-            name = "id"
-            value = { formState.id }
-            onChange = { handleChange }
-            /> <
-            /Form.Field>  <
-            Form.Field width = { 12 } >
-            <
-            label > Product < /label>  <
+            label > Products < /label>  <
             input placeholder = 'Product'
-            name = "product"
-            value = { formState.product }
+            name = "products"
+            value = { formState.products }
             onChange = { handleChange }
             /> <
             /Form.Field>  <

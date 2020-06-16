@@ -1,10 +1,8 @@
 import React, { Component, useState, useEffect } from 'react';
-// import 'semantic-ui-css/semantic.min.css'
-import { Button, Form } from 'semantic-ui-react'
-import App from '../App'
+import { Button, Form, ItemDescription } from 'semantic-ui-react'
+import axios from 'axios'
 
 const EditForm = (props) => {
-        // const initialEditFormState={id:null, product:"", number:"", size:""}
         const [EditFormState, setEditFormState] = useState(props.currentUser)
 
         const handleChange = (event) => {
@@ -14,16 +12,24 @@ const EditForm = (props) => {
         }
 
         const handleSubmit = (event) => {
-            // alert("form submitted successfully")
             event.preventDefault();
             console.log(EditFormState)
-            props.updateItem(EditFormState.id, EditFormState)
 
+        }
+
+        //    update user
+        const updateItem = (id) => {
+            console.log(id)
+            console.log(props)
+
+            return axios.put('http://localhost:5002/embry/' + id, EditFormState)
+                .then(response => { console.log(response.data) })
+                .catch(error => { console.log(error, error.response) })
         }
 
         useEffect(() => {
             setEditFormState(props.currentUser)
-        }, [props])
+        }, [props.currentUser])
 
         return ( < div >
 
@@ -33,19 +39,10 @@ const EditForm = (props) => {
             <
             Form.Field width = { 12 } >
             <
-            label > ID < /label>  <
-            input placeholder = 'ID'
-            name = "id"
-            value = { EditFormState.id }
-            onChange = { handleChange }
-            /> <
-            /Form.Field>  <
-            Form.Field width = { 12 } >
-            <
             label > Product < /label>  <
-            input placeholder = 'product'
-            name = "product"
-            value = { EditFormState.product }
+            input placeholder = 'products'
+            name = "products"
+            value = { EditFormState.products }
             onChange = { handleChange }
             /> <
             /Form.Field> <Form.Field width = { 12 } > <
@@ -54,9 +51,11 @@ const EditForm = (props) => {
             /Form.Field> <Form.Field width = { 12 } > <
             label > Size < /label> <input placeholder = 'size' name = "size" value = {EditFormState.size} onChange = { handleChange }/ >
             <
-            /Form.Field>  <
+            /Form.Field> <
             Button type = 'submit'
-            color = "blue" > update item < /Button>   <
+            color = "blue"
+            onClick = {
+                () => { updateItem(props.currentUser.id) } } > update item < /Button> <
             Button type = 'submit'
             onClick = {
                 () => props.setEditing(false) }
