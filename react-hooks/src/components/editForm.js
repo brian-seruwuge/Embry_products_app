@@ -1,5 +1,5 @@
-import React, { Component, useState, useEffect } from 'react';
-import { Button, Form, ItemDescription } from 'semantic-ui-react'
+import React, { useState, useEffect } from 'react';
+import { Button, Form } from 'semantic-ui-react'
 import axios from 'axios'
 
 const EditForm = (props) => {
